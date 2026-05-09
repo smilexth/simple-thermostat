@@ -1,3 +1,10 @@
 node_modules
 *.min.js
 .nvmrc
+
+# Build artifacts (only dist/simple-thermostat.js is committed for HACS)
+dist/*.d.ts
+dist/**/*.d.ts
+dist/simple-thermostat.debug.js
+dist/components/
+dist/config/

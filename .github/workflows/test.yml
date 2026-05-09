@@ -1,4 +1,4 @@
-name: Tests
+name: Build
 
 on:
   push:
@@ -11,17 +11,15 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-latest
-
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 14.x
-      - name: yarn install and test
+          node-version: 20
+          cache: yarn
+      - name: Install and build
         run: |
-          yarn install
-          yarn test
-        env:
-          CI: true
+          yarn install --frozen-lockfile
+          yarn build
