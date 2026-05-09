@@ -8,7 +8,7 @@ A clean, compact thermostat card for Home Assistant Lovelace UI. Provides simple
 
 > Based on the original work by [nervetattoo](https://github.com/nervetattoo/simple-thermostat). This fork is independently maintained with modern Home Assistant support.
 
-![Example thermostat](https://github.com/smilexth/simple-thermostat/raw/master/thermostat-card.png)
+![Simple Thermostat](screenshot.png)
 
 ## Features
 
@@ -21,8 +21,6 @@ A clean, compact thermostat card for Home Assistant Lovelace UI. Provides simple
 - Compatible with Home Assistant 2024.1+
 
 ## Compact Mode
-
-![Compact configuration](https://github.com/smilexth/simple-thermostat/raw/master/simple-thermostat-compact.png)
 
 Hide everything but sensors and temperature control:
 
