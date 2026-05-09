@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit-element'
+import { LitElement, html } from 'lit'
 import styles from './styles.css'
 import fireEvent from './fireEvent'
 import { name } from '../package.json'
