@@ -340,10 +340,42 @@ export default class SimpleThermostat extends LitElement {
   }
 
   localize = (label: string, prefix = '') => {
-    const lang = this._hass.selectedLanguage || this._hass.language
     const key = `${prefix}${label}`
-    const translations = this._hass.resources?.[lang]
+    const hassLocalize = typeof this._hass.localize === 'function'
+      ? (k: string) => this._hass.localize(k) || ''
+      : (_k: string) => ''
 
+    // Try key as-is
+    let result = hassLocalize(key)
+    if (result) return result
+
+    // HA 2024+ moved component state keys:
+    // component.<domain>.state._.<value> → component.<domain>.entity_component._.state.<value>
+    const componentMatch = key.match(
+      /^component\.(\w+)\.state\._\.(.+)$/
+    )
+    if (componentMatch) {
+      result = hassLocalize(
+        `component.${componentMatch[1]}.entity_component._.state.${componentMatch[2]}`
+      )
+      if (result) return result
+    }
+
+    // HA 2024+ moved state_attributes keys:
+    // state_attributes.<domain>.<attr>.<value> → component.<domain>.entity_component._.<attr>.<value>
+    const attrMatch = key.match(
+      /^state_attributes\.(\w+)\.(\w+)\.(.+)$/
+    )
+    if (attrMatch) {
+      result = hassLocalize(
+        `component.${attrMatch[1]}.entity_component._.${attrMatch[2]}.${attrMatch[3]}`
+      )
+      if (result) return result
+    }
+
+    // Fall back to the legacy resources lookup
+    const lang = this._hass.selectedLanguage || this._hass.language
+    const translations = this._hass.resources?.[lang]
     return translations?.[key] ?? label
   }
 
