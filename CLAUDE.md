@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Simple Thermostat is an independent fork of `nervetattoo/simple-thermostat` — a custom Lovelace card for Home Assistant that provides a compact, modular thermostat UI. Built with Lit 3 (LitElement), TypeScript, and bundled via Rollup. Distributed through HACS.
+Simple Thermostat is a custom Lovelace card for Home Assistant that provides a compact, modular thermostat UI. Built with Lit 3 (LitElement), TypeScript, and bundled via Rollup. Distributed through HACS.
 
 ## Build Commands
 

@@ -26,7 +26,7 @@ const OptionsStepLayout = ['column', 'row']
 const includeDomains = ['climate']
 
 const GithubReadMe =
-  'https://github.com/nervetattoo/simple-thermostat/blob/master/README.md'
+  'https://github.com/smilexth/simple-thermostat/blob/master/README.md'
 
 const stub = {
   header: {},
