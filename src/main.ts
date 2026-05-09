@@ -376,7 +376,17 @@ export default class SimpleThermostat extends LitElement {
     // Fall back to the legacy resources lookup
     const lang = this._hass.selectedLanguage || this._hass.language
     const translations = this._hass.resources?.[lang]
-    return translations?.[key] ?? label
+    result = translations?.[key]
+    if (result) return result
+
+    // For ui.* keys removed in modern HA, derive a readable label
+    // from the last segment (e.g. ui.card.climate.operation → Operation)
+    if (key.startsWith('ui.')) {
+      const last = key.split('.').pop() ?? label
+      return last.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase())
+    }
+
+    return label
   }
 
   render({ _hide, _values, _updatingValues, config, entity } = this) {
